@@ -31,7 +31,7 @@ def generate_username_password():
 
     return username + " " + password
 
-# Matthies data
+# Matthias data
 data_to_encrypt_matthias = "alice q1w2e3"
 
 #  The username and password are separated by a space -
@@ -44,7 +44,7 @@ public_key_of_identity = get_public_key("")
 # Serialize the public key.
 public_key = serialization.load_pem_public_key(public_key_of_identity.encode(), backend=default_backend())
 
-# Encryption the data (matthies data)
+# Encryption the data (matthias data)
 encrypted_data_matthias = public_key.encrypt(
 		data_to_encrypt_matthias.encode(),
 		padding.OAEP(
@@ -122,7 +122,7 @@ ZDYtCIZRDw8kOo+5UILrC3oeyEtc/MR5nRaUfad/WDz7aaMSu8fSFP5+Q1OXDTtq
 k0BgHtyaimeiX3UVcVA+H3Y59Q==
 -----END PRIVATE KEY-----"""
 
-# Fetching back matthies's data from the server ( simulation )
+# Fetching back matthias's data from the server ( simulation )
 data_from_the_server_matthias = json_of_data_matthias['data']
 encrypted_data_from_server_matthias = json_of_data_matthias['encrypted_data']
 
@@ -137,7 +137,7 @@ private_key = serialization.load_pem_private_key(
     backend=default_backend()
 )
 
-# Decrypt matthies's data.
+# Decrypt matthias's data.
 decrypted_data_matthias = private_key.decrypt(
     encrypted_data_from_server_matthias,
     padding.OAEP(
