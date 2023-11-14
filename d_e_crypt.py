@@ -45,7 +45,7 @@ public_key_of_identity = get_public_key("")
 public_key = serialization.load_pem_public_key(public_key_of_identity.encode(), backend=default_backend())
 
 # Encryption the data (matthies data)
-encrypted_data_matthies = public_key.encrypt(
+encrypted_data_matthias = public_key.encrypt(
 		data_to_encrypt_matthias.encode(),
 		padding.OAEP(
 			mgf=padding.MGF1(algorithm=hashes.SHA256()),
@@ -65,9 +65,9 @@ encrypted_data_random= public_key.encrypt(
 	)
 
 # Preparing the json of the data to be sent back to the client to decrypt
-json_of_data_matthies = {
+json_of_data_matthias = {
       "data": data_to_encrypt_matthias,
-      "encrypted_data": encrypted_data_matthies
+      "encrypted_data": encrypted_data_matthias
 }
 
 json_of_data_random = {
@@ -123,8 +123,8 @@ k0BgHtyaimeiX3UVcVA+H3Y59Q==
 -----END PRIVATE KEY-----"""
 
 # Fetching back matthies's data from the server ( simulation )
-data_from_the_server_matthies = json_of_data_matthies['data']
-encrypted_data_from_server_matthies = json_of_data_matthies['encrypted_data']
+data_from_the_server_matthias = json_of_data_matthias['data']
+encrypted_data_from_server_matthias = json_of_data_matthias['encrypted_data']
 
 # Fetching back the random data from the server ( simulation )
 data_from_the_server_random = json_of_data_random['data']
@@ -138,8 +138,8 @@ private_key = serialization.load_pem_private_key(
 )
 
 # Decrypt matthies's data.
-decrypted_data_matthies = private_key.decrypt(
-    encrypted_data_from_server_matthies,
+decrypted_data_matthias = private_key.decrypt(
+    encrypted_data_from_server_matthias,
     padding.OAEP(
         mgf=padding.MGF1(algorithm=hashes.SHA256()),
         algorithm=hashes.SHA256(),
@@ -162,9 +162,9 @@ decrypted_data_random = private_key.decrypt(
 ######################################################################################################
 
 
-print("(Matthies) The original data was: " + data_from_the_server_matthies +  " The decrypted data is: " + decrypted_data_matthies.decode('utf-8'))
+print("(Matthias) The original data was: " + data_from_the_server_matthias +  " The decrypted data is: " + decrypted_data_matthias.decode('utf-8'))
 if data_from_the_server_matthies == decrypted_data_matthies.decode('utf-8'):
-      print("Matthies data is the same!")
+      print("Matthias data is the same!")
 
 
 print("(Random) The original data was: " + data_from_the_server_random +  " The decrypted data is: " + decrypted_data_random.decode('utf-8'))
