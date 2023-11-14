@@ -163,7 +163,7 @@ decrypted_data_random = private_key.decrypt(
 
 
 print("(Matthias) The original data was: " + data_from_the_server_matthias +  " The decrypted data is: " + decrypted_data_matthias.decode('utf-8'))
-if data_from_the_server_matthies == decrypted_data_matthies.decode('utf-8'):
+if data_from_the_server_matthias == decrypted_data_matthias.decode('utf-8'):
       print("Matthias data is the same!")
 
 
